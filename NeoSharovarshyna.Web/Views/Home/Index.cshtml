@@ -1,0 +1,32 @@
+﻿@model List<ProductDto>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="d-flex justify-content-center" style="height:300px">
+                        @if (!string.IsNullOrEmpty(product.ImageUrl))
+                        {
+                            <img src="@product.ImageUrl" class="card-img-top" alt="Product Image">
+                        }
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <p class="card-text"><strong>@product.Price.ToString("c")</strong></p>
+                        <p class="card-text">@product.CategoryName</p>
+                        <div class="d-flex" style="width:100%">
+                            <a asp-action="ProductDetail" asp-route-productId="@product.ProductId" class="btn btn-info"style="width:100%">Detail</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
